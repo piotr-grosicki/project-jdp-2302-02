@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee;
 
+import com.kodilla.ecommercee.repository.OrderRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,13 @@ import static org.junit.Assert.assertTrue;
 public class SpringBootJPAIntegrationTest {
 
     @Autowired
-    private GenericEntityRepository genericEntityRepository;
+    private OrderRepository genericEntityRepository;
 
-    @Test
+   @Test
     public void givenGenericEntityRepository_whenSaveAndRetreiveEntity_thenOK() {
         GenericEntity genericEntity = genericEntityRepository
-                .save(new GenericEntity("test"));
-        Optional<GenericEntity> foundEntity = genericEntityRepository
+               .save(new GenericEntity("test"));
+       Optional<GenericEntity> foundEntity = genericEntityRepository
                 .findById(genericEntity.getId());
 
         assertTrue(foundEntity.isPresent());

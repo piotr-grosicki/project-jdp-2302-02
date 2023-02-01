@@ -12,7 +12,11 @@ public class GenericEntity {
     private Long id;
     private String value;
 
+
+
     public GenericEntity() {
+
+
     }
 
     public String getValue() {
@@ -28,4 +32,6 @@ public class GenericEntity {
 
         this.value = value;
     }
+
+
 }
