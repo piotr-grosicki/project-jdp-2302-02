@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.dto.ProductDto;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ecommerce/products")
-@RequiredArgsConstructor
 public class ProductController {
 
     @GetMapping
