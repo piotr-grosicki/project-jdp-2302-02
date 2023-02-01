@@ -1,4 +1,4 @@
-package com.shop.domain;
+package com.kodilla.ecommercee.domain;
 
 import lombok.Data;
 
@@ -17,6 +17,12 @@ public class Key {
     public Key() {
         this.key1 = LocalDateTime.of(date1, date2);
         this.key2 = -1;
+    }
+
+    public Key activeKey(Key key) {
+        key.setKey1(LocalDateTime.now());
+        key.setKey2(999);
+        return key;
     }
 
 }

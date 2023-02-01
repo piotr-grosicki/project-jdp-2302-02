@@ -1,4 +1,4 @@
-package com.shop.domain;
+package com.kodilla.ecommercee.domain;
 
 import lombok.NoArgsConstructor;
 
@@ -7,9 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Random;
 
-@NoArgsConstructor
-@Entity
-@Table(name = "USERS")
+
 public class User {
     public int id;
     public String name;
@@ -21,6 +19,13 @@ public class User {
         this.name = name;
         this.isActive = false;
         this.key = new Key();
+    }
+
+    public User (int id, String name, boolean isActive, Key key) {
+        this.id = id;
+        this.name = name;
+        this.isActive = isActive;
+        this.key = key;
     }
 
     public User banUser(User user) {
@@ -35,30 +40,27 @@ public class User {
         return user;
     }
 
-    @Id()
-    @GeneratedValue
-    @NotNull
-    @Column(name = "ID", unique = true)
+
     public int getId() {
         return id;
     }
 
-    @Column(name = "NAME")
+
     public String getName() {
         return name;
     }
 
-    @Column(name = "IS_ACTIVE")
+
     public boolean isActive() {
         return isActive;
     }
 
-    @Column(name = "KEY_1")
+
     public LocalDateTime getKey1() {
         return key.getKey1();
     }
 
-    @Column(name = "KEY_2")
+
     public int getKey2() {
         return key.getKey2();
     }
