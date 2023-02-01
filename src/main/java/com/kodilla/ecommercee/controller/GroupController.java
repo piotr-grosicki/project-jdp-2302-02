@@ -1,36 +1,37 @@
 package com.kodilla.ecommercee.controller;
-import com.kodilla.ecommercee.domain.*;
 
+import com.kodilla.ecommercee.domain.dto.GroupDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/groups")
+@RequestMapping("/ecommerce/groups")
 @RequiredArgsConstructor
 public class GroupController {
-
-    public List<GroupDto> getTasks() {
+    @GetMapping
+    public List<GroupDto> getAllGroups() {
         return new ArrayList<>();
     }
 
-    public GroupDto getTask(Long taskId) {
-        return new GroupDto(1L, "test title");
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createGroup(@RequestBody GroupDto groupDto) {
+       // return new GroupDto(1L, "Test Name");
     }
 
-    public void deleteTask(Long taskId) {
 
+    @GetMapping(value = "{groupId}")
+    public GroupDto getGroupByid(@PathVariable Long groupId) {
+        return new GroupDto(1L, "Test Group Name");
     }
 
-    public GroupDto updateTask(GroupDto groupDto) {
-        return new GroupDto(1L, "Edited test title");
-    }
 
-    public void createTask(GroupDto groupDto) {
-
+    @PutMapping
+    public GroupDto editOneGroup(@RequestBody GroupDto groupDto) {
+        return new GroupDto(1L, "Edited test Name");
     }
 
 }
