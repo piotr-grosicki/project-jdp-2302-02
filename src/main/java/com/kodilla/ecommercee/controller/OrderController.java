@@ -16,6 +16,8 @@ import java.util.List;
 public class OrderController {
 
 
+
+
     @GetMapping
     public List<OrderDto> getOrders(){
         List<OrderDto> orderDtoList = new ArrayList<>();
@@ -23,8 +25,10 @@ public class OrderController {
         return orderDtoList;
 
     }
-    @GetMapping(value = "{orderId}")
-    public OrderDto getOrder(@PathVariable long orderId){
+
+    @GetMapping(value = "Id}")
+    public OrderDto getOrder(@PathVariable long Id){
+
         return new OrderDto(1L);
     }
 
@@ -34,13 +38,14 @@ public class OrderController {
     }
 
     @PutMapping
-    public OrderDto editOrder(OrderDto orderDto){
+    public OrderDto editOrder(@RequestBody OrderDto OrderDto){
+
         return new OrderDto(1L);
     }
 
 
-    @DeleteMapping("{orderId}")
-    public void deleteOrder(@PathVariable Long orderId) {
+    @DeleteMapping("{Id}")
+    public void deleteOrder(@PathVariable Long Id) {
 
     }
 
