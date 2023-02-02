@@ -14,14 +14,14 @@ public class ProductController {
     @GetMapping
     public List<ProductDto> getProducts() {
         List<ProductDto> productDtoList = new ArrayList<>();
-        productDtoList.add(new ProductDto(1L, "TestProductList", 10.0, 1L));
+        productDtoList.add(new ProductDto(1L, "TestProductList", 10.0, 1L, 1L));
 
         return productDtoList;
     }
 
     @GetMapping(value = "{id}")
     public ProductDto getProduct(@PathVariable Long id) {
-        return new ProductDto(1L, "TestProduct", 10.0, 1L);
+        return new ProductDto(1L, "TestProduct", 10.0, 1L, 1L);
     }
 
     @DeleteMapping(value = "{id}")
