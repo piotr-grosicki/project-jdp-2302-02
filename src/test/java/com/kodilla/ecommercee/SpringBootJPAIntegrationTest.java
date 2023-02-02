@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.repository.OrderRepository;
+import com.kodilla.ecommercee.repository.GenericEntityRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 public class SpringBootJPAIntegrationTest {
 
     @Autowired
-    private OrderRepository genericEntityRepository;
+    private GenericEntityRepository genericEntityRepository;
 
    @Test
     public void givenGenericEntityRepository_whenSaveAndRetreiveEntity_thenOK() {

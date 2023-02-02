@@ -20,13 +20,13 @@ public class OrderController {
     @GetMapping
     public List<OrderDto> getOrders(){
         List<OrderDto> orderDtoList = new ArrayList<>();
-        orderDtoList.add(new OrderDto(1L,"test"));
+        orderDtoList.add(new OrderDto(1L));
         return orderDtoList;
 
     }
     @GetMapping(value = "{orderId}")
     public OrderDto getOrder(@PathVariable long orderId){
-        return new OrderDto(1L,"test");
+        return new OrderDto(1L);
     }
 
     @PostMapping
@@ -36,7 +36,7 @@ public class OrderController {
 
     @PutMapping
     public OrderDto editOrder(OrderDto orderDto){
-        return new OrderDto(1L,"test");
+        return new OrderDto(1L);
     }
 
 

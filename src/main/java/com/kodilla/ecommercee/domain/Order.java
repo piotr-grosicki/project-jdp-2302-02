@@ -20,8 +20,7 @@ public class Order {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "name")
-    private String title;
+
 
 
 
