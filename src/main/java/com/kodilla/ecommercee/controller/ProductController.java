@@ -29,13 +29,13 @@ public class ProductController {
 
     }
 
-    @PutMapping
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ProductDto updateProduct(@RequestBody ProductDto productDto) {
         return productDto;
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createBorrow(@RequestBody ProductDto productDto)  {
+    public void createProduct(@RequestBody ProductDto productDto)  {
 
     }
 
