@@ -12,8 +12,8 @@ import java.util.List;
 @RequestMapping("/ecommerce/carts")
 public class CartController {
 
-    @GetMapping(value = "{id}")
-    public List<ProductDto> getAllProductsFromCart(@PathVariable Long id) {
+    @GetMapping(value = "{cartId}")
+    public List<ProductDto> getAllProductsFromCart(@PathVariable Long cartId) {
         List<ProductDto> productDtoList = new ArrayList<>();
         productDtoList.add(new ProductDto(1L, "TestProductList", 10.0, 1L, 1L));
 
@@ -30,18 +30,18 @@ public class CartController {
 
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "{id}")
-    public List<ProductDto> addProductToCart(@PathVariable Long id ,@RequestBody List<ProductDto> productDtoList) {
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "{cartId}")
+    public List<ProductDto> addProductToCart(@PathVariable Long cartId ,@RequestBody List<ProductDto> productDtoList) {
         return productDtoList;
     }
 
-    @PostMapping("/order")
-    public void createOrder()  {
+    @PostMapping(value = "/new/order/{cartId}")
+    public void createOrder(@PathVariable Long cartId)  {
 
     }
 
-    @PostMapping()
-    public void createEmptyCart()  {
+    @PostMapping(value = "/new/cart/{userId}")
+    public void createEmptyCart(@PathVariable Long userId)  {
 
     }
 }

@@ -19,13 +19,13 @@ public class ProductController {
         return productDtoList;
     }
 
-    @GetMapping(value = "{id}")
-    public ProductDto getProduct(@PathVariable Long id) {
+    @GetMapping(value = "{cartId}")
+    public ProductDto getProduct(@PathVariable Long cartId) {
         return new ProductDto(1L, "TestProduct", 10.0, 1L, 1L);
     }
 
-    @DeleteMapping(value = "{id}")
-    public void deleteProduct(@PathVariable Long id) {
+    @DeleteMapping(value = "{cartId}")
+    public void deleteProduct(@PathVariable Long cartId) {
 
     }
 
