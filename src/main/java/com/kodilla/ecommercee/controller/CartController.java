@@ -20,12 +20,12 @@ public class CartController {
         return productDtoList;
     }
 
-    @GetMapping(value = {"cartId", "productId"})
+    @GetMapping(value = "{cartId}/{productId}")
     public ProductDto getProduct(@PathVariable Long cartId, @PathVariable Long productId) {
         return new ProductDto(cartId, "TestProduct", 10.0, 1L, productId);
     }
 
-    @DeleteMapping(value = {"cartId", "productId"})
+    @DeleteMapping(value = "{cartId}/{productId}")
     public void deleteProduct(@PathVariable Long cartId, @PathVariable Long productId) {
 
     }
