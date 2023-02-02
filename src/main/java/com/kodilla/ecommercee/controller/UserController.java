@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
         public UserDto banUser(@RequestBody UserDto usersDto) {
             return new UserDto(1, "zbanowanyUser", false, 123456L);
         }
-
         @GetMapping
         public UserDto generateKey(@RequestBody UserDto usersDto) {
             return new UserDto(1, "userZKluczem", true, 123456L);

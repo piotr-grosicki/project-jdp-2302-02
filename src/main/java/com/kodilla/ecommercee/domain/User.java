@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class User {
-
     int id;
     String name;
     boolean isActive;
