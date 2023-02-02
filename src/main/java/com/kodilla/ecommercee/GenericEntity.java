@@ -24,7 +24,6 @@ public class GenericEntity {
     }
 
     public Long getId() {
-
         return id;
     }
 
