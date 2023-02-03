@@ -14,24 +14,26 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "PRODUCTS")
 public class Product {
 
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID", unique = true)
     private Long id;
 
     @NotNull
-    @Column
+    @Column(name = "NAME")
     private String name;
 
     @NotNull
-    @Column
+    @Column(name = "PRICE")
     private double price;
 
     @ManyToOne
     @NotNull
-    @JoinColumn
+    @JoinColumn(name = "GROUP_ID")
     private Group group;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "productList")
