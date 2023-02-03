@@ -5,6 +5,7 @@ import com.kodilla.ecommercee.domain.dto.ProductDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +16,14 @@ public class CartController {
     @GetMapping(value = "{cartId}")
     public List<ProductDto> getAllProductsFromCart(@PathVariable Long cartId) {
         List<ProductDto> productDtoList = new ArrayList<>();
-        productDtoList.add(new ProductDto(1L, "TestProductList", 10.0, 1L, 1L));
+        productDtoList.add(new ProductDto(1L, "TestProductList", new BigDecimal("10.0"), 1L, 1L));
 
         return productDtoList;
     }
 
     @GetMapping(value = "{cartId}/{productId}")
     public ProductDto getProduct(@PathVariable Long cartId, @PathVariable Long productId) {
-        return new ProductDto(cartId, "TestProduct", 10.0, 1L, productId);
+        return new ProductDto(cartId, "TestProduct", new BigDecimal("10.0"), 1L, productId);
     }
 
     @DeleteMapping(value = "{cartId}/{productId}")
