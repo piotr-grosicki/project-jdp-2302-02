@@ -1,14 +1,30 @@
 package com.kodilla.ecommercee.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.*;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
+
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name = "Groups")
 public class Group {
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "GROUP_ID", unique = true)
     private Long id;
+
+    @NotNull
+    @Column(name = "NAME")
     private String name;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+    private List<Product> products = new ArrayList<>();
 }
