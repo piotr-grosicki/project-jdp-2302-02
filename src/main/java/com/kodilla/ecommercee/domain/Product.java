@@ -39,4 +39,10 @@ public class Product {
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "productList")
     private List<Cart> cartList = new ArrayList<>();
+
+    public Product(String name, BigDecimal price, Group group) {
+        this.name = name;
+        this.price = price;
+        this.group = group;
+    }
 }
