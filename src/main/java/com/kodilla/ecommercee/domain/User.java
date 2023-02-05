@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -21,20 +20,20 @@ public class User {
     @GeneratedValue
     @NotNull
     @Column(name = "USER_ID", unique = true)
-    long userId;
+    private long userId;
 
     @NotNull
     @Column(name = "NAME")
-    String name;
+    private String name;
 
     @Column(name = "IS_ACTIVE")
-    boolean isActive;
+    private boolean isActive;
 
     @Column(name = "KEY1")
-    LocalDateTime expiryDate = null;
+    private LocalDateTime expiryDate = null;
 
     @Column(name = "KEY2")
-    int key = -1;
+    private int key = -1;
 
     @OneToMany(
             targetEntity = Cart.class,
