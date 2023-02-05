@@ -12,17 +12,15 @@ import java.util.List;
 @Entity
 public class Cart {
 
-
     @ManyToOne
-    @JoinColumn(name="USERS_CARTS")
-private User user;
-
+    @JoinColumn(name = "USERS_CARTS")
+    private User user;
 
     @Id()
     @GeneratedValue
     @NotNull
     @Column(name = "CART_ID")
-    private int CartId;
+    private long cartId;
 
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Product> productList = new ArrayList<>();

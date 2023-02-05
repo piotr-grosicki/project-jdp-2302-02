@@ -20,23 +20,20 @@ public class User {
     @GeneratedValue
     @NotNull
     @Column(name = "USER_ID")
-    int UserId;
+    long userId;
 
     @NotNull
     @Column(name = "NAME")
     String name;
 
-    @Column(name = "IS_ACTIVE"  )
+    @Column(name = "IS_ACTIVE")
     boolean isActive;
 
-    @Transient
-   RandomKey randomKey = new RandomKey();
-
     @Column(name = "KEY1")
-  LocalDateTime key1 =randomKey.getKey1();
+    LocalDateTime expiryDate = null;
 
     @Column(name = "KEY2")
-  int key2 = randomKey.getKey2();
+    int key = -1;
 
     @OneToMany(
             targetEntity = Cart.class,
@@ -44,8 +41,7 @@ public class User {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    List <Cart> carts;
-
+    List<Cart> carts;
 }
 
 
