@@ -7,4 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class OrderDto {
     private long id;
+    private String name;
 }
