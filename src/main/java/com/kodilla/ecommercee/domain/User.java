@@ -1,22 +1,21 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
+
 @Entity
 @Table(name = "USERS")
 @Data
 public class User {
 
-    @Id()
+    @Id
     @GeneratedValue
     @NotNull
     @Column(name = "USER_ID")
@@ -43,12 +42,3 @@ public class User {
     )
     List<Cart> carts;
 }
-
-
-
-
-
-
-
-
-
