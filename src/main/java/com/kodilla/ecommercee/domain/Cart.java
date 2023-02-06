@@ -40,14 +40,6 @@ public class Cart {
     private List<Product> productList = new ArrayList<>();
 
 
-
-    @OneToOne(mappedBy = "cart",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)
-    private Order order;
-
-
-
     public Cart(User user) {
         this.user = user;
     }
