@@ -41,5 +41,5 @@ public class User {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    List<Cart> carts;
+    private List<Cart> carts;
 }
