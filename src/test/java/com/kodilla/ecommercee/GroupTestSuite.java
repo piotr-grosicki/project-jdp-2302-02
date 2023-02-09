@@ -81,17 +81,21 @@ public class GroupTestSuite {
     public void updateSelectedGroupTest() {
         //Given
         String renameGroup = "Test_Group";
+        Group anotherGroup = groupRepository.save(Group.builder().name("Another_Group").build());
         Group newGroupNameToSave = groupRepository.save(Group.builder().name("Test_Group").build());
 
         //When
         newGroupNameToSave.setName(renameGroup);
+        groupRepository.save(anotherGroup);
         groupRepository.save(newGroupNameToSave);
         List<Group> groupList = groupRepository.findAll();
 
         //Then
         assertEquals(renameGroup, newGroupNameToSave.getName());
-        assertEquals(1, groupList.size());
-
+        assertEquals(2, groupList.size());
+       // for (Group groupLists: groupList) {
+        //    System.out.println(groupLists);
+      //  }
         //Cleanup
         groupRepository.deleteAll();
     }
