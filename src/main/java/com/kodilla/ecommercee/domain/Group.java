@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,4 +29,10 @@ public class Group {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<Product> products = new ArrayList<>();
+
+    public Group(String name) {
+        this.name = name;
+    }
+
 }
+
