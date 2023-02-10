@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "\"GROUPS\"")
+@Table(name = "GROUPS")
 @Data
 public class Group {
 
@@ -27,9 +27,8 @@ public class Group {
 
     @Id
     @NotNull
-    @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
-    @Column(name = "IDGROUP", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID", unique = true)
     private Long id;
 
     @NotNull
@@ -39,7 +38,7 @@ public class Group {
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "group",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.REMOVE,
             fetch = FetchType.EAGER
     )
     public List<Product> products = new ArrayList<>();
