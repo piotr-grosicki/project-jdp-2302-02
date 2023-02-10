@@ -2,6 +2,7 @@ package com.kodilla.ecommercee.domain;
 
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 
 import javax.persistence.*;
@@ -10,23 +11,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Groups")
+@Table(name = "\"GROUPS\"")
+@Data
 public class Group {
+
+    public Group( String name) {
+        this.name = name;
+    }
+
     @Id
     @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "GROUP_ID", unique = true)
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    @Column(name = "IDGROUP", unique = true)
     private Long id;
 
     @NotNull
     @Column(name = "NAME")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
-    private List<Product> products = new ArrayList<>();
+    @OneToMany(
+            targetEntity = Product.class,
+            mappedBy = "group",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    public List<Product> products = new ArrayList<>();
 }
