@@ -10,8 +10,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -43,10 +41,8 @@ public class Product {
     @ManyToOne
     @NotNull
     @JoinColumn(name = "GROUP_ID")
-    public Group group;
+    private Group group;
 
    @OneToMany
-    public List<Cart> cartList = new ArrayList<>();
-
-
+    private List<Cart> cartList = new ArrayList<>();
 }

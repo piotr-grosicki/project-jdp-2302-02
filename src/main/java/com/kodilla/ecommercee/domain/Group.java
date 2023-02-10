@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -10,10 +9,6 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -42,5 +37,5 @@ public class Group {
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
-    public List<Product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 }
