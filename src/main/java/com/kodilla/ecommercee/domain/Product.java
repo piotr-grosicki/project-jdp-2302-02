@@ -43,6 +43,12 @@ public class Product {
     @JoinColumn(name = "GROUP_ID")
     private Group group;
 
-   @OneToMany
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "productList")
     private List<Cart> cartList = new ArrayList<>();
+
+    public Product(String name, BigDecimal price, Group group) {
+        this.name = name;
+        this.price = price;
+        this.group = group;
+    }
 }
