@@ -109,10 +109,10 @@ public class ProductTest {
         productRepository.save(product1);
         productRepository.save(product2);
 
-        Group editGroup = productRepository.findById(1L).get().getGroup();
+        Group editGroup = productRepository.findById(product1.getId()).get().getGroup();
         editGroup.setName("zepsutynabial");
         groupRepository.save(editGroup);
-        String productGroupAfterEdit = productRepository.findById(2L).get().getGroup().getName();
+        String productGroupAfterEdit = productRepository.findById(product2.getId()).get().getGroup().getName();
 
         //Then
         Assert.assertEquals(productGroupAfterEdit, "zepsutynabial");
