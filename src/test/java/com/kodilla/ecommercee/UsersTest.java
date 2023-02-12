@@ -1,9 +1,6 @@
 package com.kodilla.ecommercee;
 
-
-
 import com.kodilla.ecommercee.domain.User;
-import com.kodilla.ecommercee.repository.CartRepository;
 import com.kodilla.ecommercee.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,14 +8,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.List;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UsersTest {
-
 
     @Autowired
     private UserRepository userRepository;
@@ -85,9 +79,10 @@ public class UsersTest {
         User editedUser = userRepository.findById(user3.getUserId()).get();
         editedUser.setName("Matolek");
         userRepository.save(editedUser);
+String userNAmeAfterEdit = userRepository.findById(user3.getUserId()).get().getName();
 
         //Then
-        Assert.assertEquals("Matolek", userRepository.findById(user3.getUserId()).get().getName());
+        Assert.assertEquals("Matolek",userNAmeAfterEdit );
 
         //CleanUp
         userRepository.deleteAll();
