@@ -66,14 +66,6 @@ public class ProductTest {
         productRepository.save(product3);
         List<Product> testProduct = productRepository.findAll();
 
-        System.out.println(nabial);
-        System.out.println(mieso);
-        System.out.println(product1);
-        System.out.println(product2);
-        System.out.println(product3);
-
-
-
         //Then
         Assert.assertEquals(3, testProduct.size());
 

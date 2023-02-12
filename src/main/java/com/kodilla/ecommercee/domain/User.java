@@ -1,8 +1,7 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,8 +15,13 @@ import java.util.List;
 @Data
 public class User {
 
+    public User (String name) {
+        this.name=name;
+    }
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
     @NotNull
     @Column(name = "USER_ID", unique = true)
     private long userId;
@@ -27,7 +31,7 @@ public class User {
     private String name;
 
     @Column(name = "IS_ACTIVE")
-    private boolean isActive;
+    private boolean isActive = false;
 
     @Column(name = "KEY1")
     private LocalDateTime expiryDate = null;
