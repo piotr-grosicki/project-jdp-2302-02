@@ -24,9 +24,9 @@ public class Product {
     }
 
     @Id
-    @NotNull
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
+    @NotNull
     @Column(name = "ID", unique = true)
     private Long id;
 
