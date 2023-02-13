@@ -6,6 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,16 +16,12 @@ import java.util.List;
 @Data
 public class User {
 
-    public User (String name) {
-        this.name=name;
-    }
-
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
     @NotNull
     @Column(name = "USER_ID", unique = true)
-    private long userId;
+    private Long userId;
 
     @NotNull
     @Column(name = "NAME")
@@ -42,8 +39,12 @@ public class User {
     @OneToMany(
             targetEntity = Cart.class,
             mappedBy = "user",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY
     )
-    private List<Cart> carts;
+    private List<Cart> carts = new ArrayList<>();
+
+    public User (String name) {
+        this.name=name;
+    }
 }

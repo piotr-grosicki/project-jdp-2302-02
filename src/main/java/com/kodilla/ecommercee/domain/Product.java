@@ -17,12 +17,6 @@ import java.util.List;
 @Data
 public class Product {
 
-    public Product( Group group, String name, BigDecimal price) {
-        this.name = name;
-        this.price = price;
-        this.group = group;
-    }
-
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
@@ -43,10 +37,10 @@ public class Product {
     @JoinColumn(name = "GROUP_ID")
     private Group group;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "productList")
+    @ManyToMany(cascade = CascadeType.MERGE, mappedBy = "productList")
     private List<Cart> cartList = new ArrayList<>();
 
-    public Product(String name, BigDecimal price, Group group) {
+    public Product( Group group, String name, BigDecimal price) {
         this.name = name;
         this.price = price;
         this.group = group;
