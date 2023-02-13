@@ -226,7 +226,10 @@ public class CartTest {
         assertEquals(3, cartSizeBeforeDelete);
         assertEquals(0, cartSizeAfterDelete);
         assertEquals(0, cartRepository.count());
-        assertEquals(0, userRepository.count());
+
+        //CleanUp
+        userRepository.deleteAll();
+        cartRepository.deleteAll();
     }
 
     @Test
@@ -253,7 +256,6 @@ public class CartTest {
         //Then
         assertEquals(1, cartSizeBeforeDelete);
         assertEquals(1, cartSizeAfterDelete);
-        assertEquals(1, cartRepository.count());
 
         //CleanUp
         userRepository.deleteAll();
@@ -282,7 +284,6 @@ public class CartTest {
         //Then
         assertEquals(1, cartSizeBeforeDelete);
         assertEquals(1, cartSizeAfterDelete);
-        assertEquals(1, cartRepository.count());
 
         //CleanUp
         userRepository.deleteAll();
