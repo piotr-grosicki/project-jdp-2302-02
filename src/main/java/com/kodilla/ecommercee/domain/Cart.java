@@ -2,15 +2,17 @@ package com.kodilla.ecommercee.domain;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -19,12 +21,10 @@ public class Cart {
 
     @Id
     @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator="increment")
+    @GenericGenerator(name="increment", strategy = "increment")
     @Column(name = "ID", unique = true)
     private Long id;
-
-    @Column(name = "QUANTITY")
-    private int productQuantity = 0;
 
     @NotNull
     @ManyToOne
@@ -39,6 +39,8 @@ public class Cart {
     )
     private List<Product> productList = new ArrayList<>();
 
+    @Column(name = "QUANTITY")
+    private int productQuantity = productList.size();
 
     public Cart(User user) {
         this.user = user;

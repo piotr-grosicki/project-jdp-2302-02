@@ -28,10 +28,10 @@ public class ProductTest {
         //Given
         Group nabial = new Group("nabial");
         Group mieso = new Group("mieso");
-        final Product product1 = new Product(nabial, "Maslo", new BigDecimal(4));
-        final Product product2 = new Product(nabial, "ser", new BigDecimal(32));
-        final Product product3 = new Product(mieso, "kurczak", new BigDecimal(22));
-        final Product product4 = new Product(mieso, "wolowina", new BigDecimal(52));
+        Product product1 = new Product(nabial, "Maslo", new BigDecimal(4));
+        Product product2 = new Product(nabial, "ser", new BigDecimal(32));
+        Product product3 = new Product(mieso, "kurczak", new BigDecimal(22));
+        Product product4 = new Product(mieso, "wolowina", new BigDecimal(52));
 
         //When
         groupRepository.save(nabial);
@@ -66,14 +66,6 @@ public class ProductTest {
         productRepository.save(product3);
         List<Product> testProduct = productRepository.findAll();
 
-        System.out.println(nabial);
-        System.out.println(mieso);
-        System.out.println(product1);
-        System.out.println(product2);
-        System.out.println(product3);
-
-
-
         //Then
         Assert.assertEquals(3, testProduct.size());
 
@@ -81,7 +73,6 @@ public class ProductTest {
         groupRepository.deleteAll();
         productRepository.deleteAll();
     }
-
 
     @Test
     public void testProductRepositoryPut() {
@@ -94,12 +85,12 @@ public class ProductTest {
         groupRepository.save(nabial);
         productRepository.save(product1);
         productRepository.save(product2);
-        Product editedProduct =productRepository.findById(product1.getId()).get();
+        Product editedProduct = productRepository.findById(product1.getId()).get();
         editedProduct.setName("kefir");
         productRepository.save(editedProduct);
 
         //Then
-        Assert.assertEquals( productRepository.findById(product1.getId()).get().getName(),"kefir");
+        Assert.assertEquals(productRepository.findById(product1.getId()).get().getName(), "kefir");
 
         //CleanUp
         groupRepository.deleteAll();
@@ -107,7 +98,32 @@ public class ProductTest {
     }
 
     @Test
-    public void testProductRepositoryDelete() {
+    public void testProductRepositoryPutGroup() {
+        //Given
+        Group nabial = new Group("nabial");
+        Product product1 = new Product(nabial, "Maslo", new BigDecimal(4));
+        Product product2 = new Product(nabial, "ser", new BigDecimal(32));
+
+        //When
+        groupRepository.save(nabial);
+        productRepository.save(product1);
+        productRepository.save(product2);
+
+        Group editGroup = productRepository.findById(product1.getId()).get().getGroup();
+        editGroup.setName("zepsutynabial");
+        groupRepository.save(editGroup);
+        String productGroupAfterEdit = productRepository.findById(product2.getId()).get().getGroup().getName();
+
+        //Then
+        Assert.assertEquals(productGroupAfterEdit, "zepsutynabial");
+
+        //CleanUp
+        groupRepository.deleteAll();
+        productRepository.deleteAll();
+    }
+
+    @Test
+    public void testProductRepositoryDeleteOnlyProductRepository() {
         //Given
         Group nabial = new Group("nabial");
         Group mieso = new Group("mieso");
@@ -122,6 +138,31 @@ public class ProductTest {
         productRepository.save(product2);
         productRepository.save(product3);
         productRepository.deleteAll();
+
+        //Then
+        Assert.assertEquals(0, productRepository.count());
+        Assert.assertEquals(2, groupRepository.count());
+
+        //CleanUp
+        groupRepository.deleteAll();
+        productRepository.deleteAll();
+    }
+
+    @Test
+    public void testProductRepositoryDeleteGroupRepository() {
+        //Given
+        Group nabial = new Group("nabial");
+        Group mieso = new Group("mieso");
+        final Product product1 = new Product(nabial, "Maslo", new BigDecimal(4));
+        final Product product2 = new Product(nabial, "ser", new BigDecimal(32));
+        final Product product3 = new Product(mieso, "kurczak", new BigDecimal(22));
+
+        //When
+        groupRepository.save(nabial);
+        groupRepository.save(mieso);
+        productRepository.save(product1);
+        productRepository.save(product2);
+        productRepository.save(product3);
         groupRepository.deleteAll();
 
         //Then
