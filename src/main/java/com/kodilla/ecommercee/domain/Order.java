@@ -29,8 +29,8 @@ public class Order {
     private String name;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ORDERS_CART")
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "CART_ID")
     private Cart cart;
 
     public Order(String name,Cart cart){

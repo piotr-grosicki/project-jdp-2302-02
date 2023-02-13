@@ -1,9 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.repository.CartRepository;
-import com.kodilla.ecommercee.repository.GroupRepository;
-import com.kodilla.ecommercee.repository.ProductRepository;
-import com.kodilla.ecommercee.repository.UserRepository;
+import com.kodilla.ecommercee.repository.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +25,8 @@ public class CartTest {
     CartRepository cartRepository;
     @Autowired
     private GroupRepository groupRepository;
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Test
     public void tesCartRepositoryPost() {
@@ -261,5 +260,33 @@ public class CartTest {
         cartRepository.deleteAll();
         productRepository.deleteAll();
         groupRepository.deleteAll();
+    }
+
+    @Test
+    public void testCartCascadeWhenRemoveOrder() {
+        //Given
+        User user1 = new User("Tomek");
+        Cart cart1 = new Cart(user1);
+        Order order1 = new Order("Test order", cart1) ;
+
+        user1.getCarts().add(cart1);
+        userRepository.save(user1);
+        cartRepository.save(cart1);
+        orderRepository.save(order1);
+
+        //When
+        long cartSizeBeforeDelete = cartRepository.count();
+        orderRepository.deleteById(order1.getId());
+        long cartSizeAfterDelete = cartRepository.count();
+
+        //Then
+        assertEquals(1, cartSizeBeforeDelete);
+        assertEquals(1, cartSizeAfterDelete);
+        assertEquals(1, cartRepository.count());
+
+        //CleanUp
+        userRepository.deleteAll();
+        cartRepository.deleteAll();
+        orderRepository.deleteAll();
     }
 }
