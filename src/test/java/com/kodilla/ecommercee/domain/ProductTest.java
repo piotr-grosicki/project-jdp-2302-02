@@ -198,7 +198,7 @@ public class ProductTest {
         long productSizeAfterDelete = productRepository.count();
 
         // Then
-        Assert.assertEquals(Optional.empty(), productRepository.findById(product1.getId()));
+        assertEquals(Optional.empty(), productRepository.findById(product1.getId()));
         assertEquals(2, productSizeBeforeDelete);
         assertEquals(1, productSizeAfterDelete);
 
