@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "GROUPS")
+@Table(name = "\"GROUPS\"")
 @Data
 public class Group {
     @Id

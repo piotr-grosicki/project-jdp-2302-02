@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ProductMapper {
-    private GroupService groupService;
+    private final GroupService groupService;
     
     public Product mapToProduct(final ProductDto productDto) {
         return new Product(
