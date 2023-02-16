@@ -12,8 +12,6 @@ import java.math.BigDecimal;
 
 @SpringBootApplication
 public class EcommerceeApplication {
-    GroupRepository groupRepository;
-    ProductRepository productRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(EcommerceeApplication.class, args);
