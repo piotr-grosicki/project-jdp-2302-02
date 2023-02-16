@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.dto.GroupDto;
+import com.kodilla.ecommercee.service.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.List;
 @RequestMapping("/ecommerce/groups")
 @RequiredArgsConstructor
 public class GroupController {
+    private final GroupService groupService;
     @GetMapping
     public List<GroupDto> getAllGroups() {
         return new ArrayList<>();

@@ -14,16 +14,11 @@ import java.util.List;
 @Table(name = "GROUPS")
 @Data
 public class Group {
-
-    public Group( String name) {
-        this.name = name;
-    }
-
     @Id
     @NotNull
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
-    @Column(name = "ID", unique = true)
+    @Column(name = "ID",unique = true)
     private Long id;
 
     @NotNull
@@ -36,5 +31,9 @@ public class Group {
             cascade = CascadeType.REMOVE,
             fetch = FetchType.EAGER
     )
-  private List<Product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
+
+    public Group( String name) {
+        this.name = name;
+    }
 }

@@ -13,5 +13,4 @@ public class ProductDto {
     private String name;
     private BigDecimal price;
     private Long groupId;
-    private Long cartId;
 }
