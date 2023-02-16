@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.domain.Group;
-import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.repository.GroupRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,8 +83,6 @@ public class GroupTest {
         groupRepository.deleteAll();
     }
 
-
-
     @Test
     public void updateSelectedGroupTest() {
         //Given
@@ -103,6 +98,26 @@ public class GroupTest {
 
         //Then
         Assert.assertEquals(groupRepository.findById(group1.getId()).get().getName(),GROUP_NAME_3);
+        assertEquals(2, groupRepository.findAll().size());
+
+        //Cleanup
+        groupRepository.deleteAll();
+    }
+    @Test
+    public void DeleteGroupByIdTest() {
+        //Given
+        Group group1 = new Group(GROUP_NAME_1);
+        Group group2 = new Group(GROUP_NAME_2);
+        Group group3 = new Group(GROUP_NAME_3);
+
+        //When
+        groupRepository.save(group1);
+        groupRepository.save(group2);
+        groupRepository.save(group3);
+        //assertEquals(3, groupRepository.findAll().size());
+        groupRepository.deleteById(group3.getId());
+
+        //Then
         assertEquals(2, groupRepository.findAll().size());
 
         //Cleanup
