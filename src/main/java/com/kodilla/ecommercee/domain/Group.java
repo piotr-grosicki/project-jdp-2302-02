@@ -11,13 +11,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "GROUPS")
+@Table(name = "\"GROUPS\"")
 @Data
 public class Group {
-
-    public Group( String name) {
-        this.name = name;
-    }
 
     @Id
     @NotNull
@@ -37,4 +33,7 @@ public class Group {
             fetch = FetchType.EAGER
     )
   private List<Product> products = new ArrayList<>();
+    public Group( String name) {
+        this.name = name;
+    }
 }

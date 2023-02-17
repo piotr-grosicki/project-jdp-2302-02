@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ecommerce/groups")
+@RequestMapping("/ecommercee/groups")
 @RequiredArgsConstructor
 public class GroupController {
     @GetMapping
