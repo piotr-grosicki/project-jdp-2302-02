@@ -269,7 +269,7 @@ public class CartTest {
         //Given
         User user1 = new User("Tomek");
         Cart cart1 = new Cart(user1);
-        Order order1 = new Order("Test order", cart1) ;
+        Order order1 = new Order(cart1) ;
 
         user1.getCarts().add(cart1);
         userRepository.save(user1);
