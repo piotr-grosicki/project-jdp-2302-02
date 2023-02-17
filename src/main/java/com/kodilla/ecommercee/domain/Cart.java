@@ -3,7 +3,6 @@ package com.kodilla.ecommercee.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -39,8 +38,6 @@ public class Cart {
     )
     private List<Product> productList = new ArrayList<>();
 
-    @Column(name = "QUANTITY")
-    private int productQuantity = productList.size();
 
     public Cart(User user) {
         this.user = user;
