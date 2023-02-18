@@ -25,14 +25,11 @@ public class OrderController {
     private final OrderMapper orderMapper;
     private final OrderService orderService;
 
-
-
     @GetMapping
     public ResponseEntity<List<OrderDto>> findOrders() {
-        List<Order> OrderList = orderService.findOrders();
-        return ResponseEntity.ok(OrderMapper.mapToOrderDtoList(OrderList));
+        List<Order> orderList = orderService.findOrders();
+        return ResponseEntity.ok(orderMapper.mapToOrderDtoList(orderList));
     }
-
 
     @GetMapping(value = "{orderId}")
     public ResponseEntity<OrderDto> findOrder (@PathVariable Long orderId) {
@@ -41,7 +38,7 @@ public class OrderController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addOrder (@RequestBody OrderDto orderDto)  {
-       Order order = orderMapper.mapToOrder(OrderDto);
+       Order order = orderMapper.mapToOrder(orderDto);
        Order savedOrder = orderService.saveOrder(order);
        return ResponseEntity.ok().build();
     }
