@@ -17,12 +17,5 @@ public class ProductDto {
     private Long id;
     private String name;
     private BigDecimal price;
-    private Group group;
-    private List<Cart> cartList;
-
-    public ProductDto( Group group, String name, BigDecimal price) {
-        this.name = name;
-        this.price = price;
-        this.group = group;
-    }
+    private Long groupId;
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/ecommercee/groups")
 @RequiredArgsConstructor
 public class GroupController {
+
     @GetMapping
     public List<GroupDto> getAllGroups() {
         return new ArrayList<>();

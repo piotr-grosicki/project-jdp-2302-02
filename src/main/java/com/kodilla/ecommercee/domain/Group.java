@@ -19,7 +19,7 @@ public class Group {
     @NotNull
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
-    @Column(name = "ID", unique = true)
+    @Column(name = "ID",unique = true)
     private Long id;
 
     @NotNull
@@ -32,7 +32,8 @@ public class Group {
             cascade = CascadeType.REMOVE,
             fetch = FetchType.EAGER
     )
-  private List<Product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
+
     public Group( String name) {
         this.name = name;
     }

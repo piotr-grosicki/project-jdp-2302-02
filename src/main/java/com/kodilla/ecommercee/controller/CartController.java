@@ -29,6 +29,7 @@ public class CartController {
     private final OrderService orderService;
 
 
+
     @PostMapping(value = "/new/cart/{userId}")
     public ResponseEntity<Void> createEmptyCart(@PathVariable Long userId) {
         User userOwningCart = userService.getUser(userId);
@@ -52,7 +53,7 @@ public class CartController {
         List<Product> addedProductList = new ArrayList<>();
 
         for (Long id : productIdList) {
-            addedProductList.add(productService.findProductById(id));
+            addedProductList.add(productService.getProduct(id));
         }
 
         List<Product> mergeProductList = new ArrayList<>();
@@ -67,7 +68,7 @@ public class CartController {
     public ResponseEntity<Void> deleteProduct(@PathVariable Long cartId, @PathVariable Long productId) {
         Cart loadedCart = cartService.findCart(cartId);
         List<Product> loadedProductList = loadedCart.getProductList();
-        Product productToRemove = productService.findProductById(productId);
+        Product productToRemove = productService.getProduct(productId);
         loadedProductList.remove(productToRemove);
         loadedCart.setProductList(loadedProductList);
         cartService.saveCard(loadedCart);
