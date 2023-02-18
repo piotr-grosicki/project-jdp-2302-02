@@ -12,7 +12,7 @@ import java.util.List;
 public class OrderService {
    private final OrderRepository orderRepository;
 
-  List<Order> findOrders (){
+  public List<Order> findOrders (){
   return orderRepository.findAll();
   }
 
@@ -24,8 +24,8 @@ public class OrderService {
       orderRepository.deleteById(id);
   }
 
-  public void saveOrder (Order order){
-      orderRepository.save(order);
+  public Order saveOrder (final Order order){
+      return orderRepository.save(order);
   }
 
 

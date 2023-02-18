@@ -1,9 +1,16 @@
 package com.kodilla.ecommercee.controller;
 
 
+import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.dto.OrderDto;
+import com.kodilla.ecommercee.mapper.CartMapper;
+import com.kodilla.ecommercee.mapper.OrderMapper;
+import com.kodilla.ecommercee.service.CartService;
+import com.kodilla.ecommercee.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -15,34 +22,42 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
 
+    private final OrderMapper orderMapper;
+    private final OrderService orderService;
+
+
+
     @GetMapping
-    public List<OrderDto> getOrders(){
-        List<OrderDto> orderDtoList = new ArrayList<>();
-        orderDtoList.add(new OrderDto(1L, "zwrot wszytkich orderow"));
-        return orderDtoList;
+    public ResponseEntity<List<OrderDto>> findOrders() {
+        List<Order> OrderList = orderService.findOrders();
+        return ResponseEntity.ok(OrderMapper.mapToOrderDtoList(OrderList));
     }
 
-    @GetMapping(value = "{id}")
-    public OrderDto getOrder(@PathVariable long id){
 
-        return new OrderDto(2L, "zwrot pojedynczego orderu");
+    @GetMapping(value = "{orderId}")
+    public ResponseEntity<OrderDto> findOrder (@PathVariable Long orderId) {
+        return new ResponseEntity<>(orderMapper.mapToOrderDto(orderService.findOrder(orderId)), HttpStatus.OK);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "{id}")
-    public List<OrderDto> addOrder(@PathVariable Long id,@RequestBody OrderDto orderDto) {
-        List<OrderDto> orderDtoList= new ArrayList<>();
-        orderDtoList.add(orderDto);
-        return orderDtoList;
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> addOrder (@RequestBody OrderDto orderDto)  {
+       Order order = orderMapper.mapToOrder(OrderDto);
+       Order savedOrder = orderService.saveOrder(order);
+       return ResponseEntity.ok().build();
     }
 
     @PutMapping
-    public OrderDto editOrder(@RequestBody OrderDto OrderDto){
+    public ResponseEntity<OrderDto> editOrder(@RequestBody OrderDto orderDto) {
+        Order order = orderMapper.mapToOrder(orderDto);
+        Order savedOrder = orderService.saveOrder(order);
+        return ResponseEntity.ok(orderMapper.mapToOrderDto(savedOrder));
 
-        return new OrderDto(3L, "test edycji orderu");
     }
 
 
-    @DeleteMapping("{id}")
-    public void deleteOrder(@PathVariable Long id) {
-    }
+    @DeleteMapping(value = "{orderId}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable Long orderId) {
+        orderService.deleteOrder(orderId);
+        return ResponseEntity.ok().build();
+}
 }
