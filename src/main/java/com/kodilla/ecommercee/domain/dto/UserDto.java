@@ -4,12 +4,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @Data
 public class UserDto {
-    int id ;
+    int userId ;
     String name;
     boolean isActive;
-    long randomKey;
+    LocalDateTime expiryDate;
+    int key;
+
+    public UserDto(String name) {
+        this.name = name;
+    }
 }

@@ -14,6 +14,7 @@ import java.util.List;
 @Table(name = "\"GROUPS\"")
 @Data
 public class Group {
+
     @Id
     @NotNull
     @GeneratedValue(generator="increment")
