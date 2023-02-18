@@ -33,8 +33,8 @@ public class OrderTest {
         //Given
         User user1 = new User("Jakub");
         Cart cart1 = new Cart(user1);
-        Order order1 = new Order("Zamówienie 1", cart1);
-        Order order2 = new Order("Zamówienie 2", cart1);
+        Order order1 = new Order( cart1);
+        Order order2 = new Order( cart1);
 
         user1.getCarts().add(cart1);
 
@@ -60,9 +60,9 @@ public class OrderTest {
         //Given
         User user1 = new User("Jakub");
         Cart cart1 = new Cart(user1);
-        Order order1 = new Order("Zamówienie 1", cart1);
-        Order order2 = new Order("Zamówienie 2", cart1);
-        Order order3 = new Order("Zamówienie 3", cart1);
+        Order order1 = new Order( cart1);
+        Order order2 = new Order( cart1);
+        Order order3 = new Order( cart1);
 
         user1.getCarts().add(cart1);
 
@@ -88,7 +88,7 @@ public class OrderTest {
         //Given
         User user1 = new User("Jakub");
         Cart cart1 = new Cart(user1);
-        Order order1= new Order("Zamówienie 1",cart1);
+        Order order1= new Order(cart1);
 
         user1.getCarts().add(cart1);
 
@@ -100,7 +100,6 @@ public class OrderTest {
         Order getOrder = orderRepository.findById(order1.getId()).get();
 
         //Then
-        assertEquals(order1.getName(), getOrder.getName());
         assertNotNull(getOrder.getId());
 
         //CleanUp
@@ -113,8 +112,8 @@ public class OrderTest {
         //Given
         User user1 = new User("Jakub");
         Cart cart1 = new Cart(user1);
-        Order order1 = new Order("Zamówienie 1",cart1);
-        Order order2 = new Order("Zamówienie 2",cart1);
+        Order order1 = new Order(cart1);
+        Order order2 = new Order(cart1);
 
         user1.getCarts().add(cart1);
 
@@ -125,11 +124,6 @@ public class OrderTest {
 
         //When
         Order editOrder = orderRepository.findById(order1.getId()).get();
-        editOrder.setName("zmodyfikowane zamówienie");
-        orderRepository.save(editOrder);
-
-        //Then
-        assertEquals( orderRepository.findById(order1.getId()).get().getName(),"zmodyfikowane zamówienie");
 
         //CleanUp
         orderRepository.deleteAll();
@@ -141,9 +135,9 @@ public class OrderTest {
         //Given
         User user1 = new User("Jakub");
         Cart cart1 = new Cart(user1);
-        final Order order1 = new Order("Zamówienie 1", cart1);
-        final Order order2 = new Order("Zamówienie 2", cart1);
-        final Order order3 = new Order("Zamówienie 3", cart1);
+        final Order order1 = new Order(cart1);
+        final Order order2 = new Order(cart1);
+        final Order order3 = new Order(cart1);
 
         user1.getCarts().add(cart1);
 
