@@ -16,7 +16,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "ORDERS")
 public class Order {
 
-
     @Id
     @NotNull
     @GeneratedValue(generator="increment")
@@ -26,7 +25,7 @@ public class Order {
     @NotNull
     @Column(name = "NAME")
     private String name;
-
+    @NotNull
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "CART_ID")
     private Cart cart;
