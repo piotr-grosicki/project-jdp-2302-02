@@ -32,4 +32,7 @@ public class Order {
     public Order(Cart cart){
         this.cart = cart;
     }
+
+    public Order(Long id) {
+    }
 }
