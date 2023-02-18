@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProductMapper {
     private final GroupService groupService;
-    
+
     public Product mapToProduct(final ProductDto productDto) {
         return new Product(
                 productDto.getId(),
                 productDto.getName(),
-                productDto.getPrice(), 
+                productDto.getPrice(),
                 groupService.getGroup(productDto.getGroupId())
         );
     }
@@ -39,3 +39,4 @@ public class ProductMapper {
                 .map(this::mapToProductDto)
                 .collect(Collectors.toList());
     }
+}
